@@ -19,5 +19,8 @@ Se a versão de python que aparecer for a 2 tens que fechar a consola e apagar a
 pasta `venv` e de seguida escrever `python3 -m venv venv` e voltas a testar na
 consola os passos em cima.
 
-Quando aparecer a versão correta de python é só escrever `flask run` e aceder no
+Quando aparecer a versão correta de python tens que fazer
+`pip install -r requirements.txt`
+
+Para testar o servidor é só escrever `flask run` e aceder no
 browser ao `127.0.0.1:5000` e deve aparecer o jogo.
