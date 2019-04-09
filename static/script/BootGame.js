@@ -5,6 +5,8 @@ class BootGame extends Phaser.Scene {
 
   preload() {
     this.load.image('menubg', 'static/img/menubg.jpg');
+    this.load.spritesheet('button', 'assets/button_sprite_sheet.png', 193, 71);
+
   }
 
   create() {
