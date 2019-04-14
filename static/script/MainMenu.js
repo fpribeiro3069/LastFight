@@ -55,18 +55,16 @@ class MainMenu extends Phaser.Scene {
     let buttonPos = -3
     this.time.addEvent({
       delay: 250,
-      callback: animateButtons,
+      callback: function() {
+        let buttons = getMainMenuButtons();
+        for (let button of buttons) {
+          button.y += buttonPos;
+        }
+        buttonPos *= -1
+      },
       callbackScope: this,
       loop: true
     })
-    // botoes a mexerem-se a cada 250ms
-    function animateButtons() {
-      let buttons = getMainMenuButtons();
-      for (let button of buttons) {
-        button.y += buttonPos;
-      }
-      buttonPos *= -1
-    }
 
     console.log(gameState)
   }

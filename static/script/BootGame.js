@@ -2,8 +2,11 @@ class BootGame extends Phaser.Scene {
   constructor() {
     super('BootGame');
   }
+  preload() {
+    // Carregar loading bar
+  }
+
   create() {
-    this.add.text(20, 20, "Loading game...");
     this.scene.start("PreloadGame");
   }
 }

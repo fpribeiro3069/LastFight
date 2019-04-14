@@ -5,7 +5,14 @@ window.onload = function (){
       width: 1000,
       height: 600,
       backgroundColor: 0xb21c1c,
-      scene: [BootGame, PreloadGame, MainMenu, Fight],
+      scene: [/*BootGame,*/PreloadGame, MainMenu, Fight],
+      physics: {
+        default: 'matter',
+        matter: {
+          gravity: { y: 0.5 }
+        },
+        debug: true
+      }
   }
 
   var game = new Phaser.Game(config);
