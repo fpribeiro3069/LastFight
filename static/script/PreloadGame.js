@@ -13,7 +13,7 @@ class PreloadGame extends Phaser.Scene {
     this.load.spritesheet('som', 'static/img/btnSound.png', {frameWidth: 56, frameHeight: 52})
     this.load.audio('menuSound', 'static/sound/menu.mp3');
 
-    gameState.sound = false
+    gameState.hasMusic = false
 
   }
 
