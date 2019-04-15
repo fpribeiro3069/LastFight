@@ -7,9 +7,9 @@ window.onload = function (){
       backgroundColor: 0xb21c1c,
       scene: [/*BootGame,*/PreloadGame, MainMenu, Fight],
       physics: {
-        default: 'matter',
-        matter: {
-          gravity: { y: 0.5 }
+        default: 'arcade',
+        arcade: {
+          gravity: { y: 500 }
         },
         debug: true
       }
