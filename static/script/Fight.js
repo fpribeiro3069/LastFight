@@ -13,8 +13,8 @@ class Fight extends Phaser.Scene {
     for(let i = 0; i < 1000; i+=60)
       platforms.create(20 + i, 570, 'map1_ground').setScale(.7).refreshBody()
 
-    gameState.player1 = players.create(225, 300, 'fighter1_walking').setScale(1.5, 1.5)
-    gameState.player2 = players.create(525, 300, 'fighter1_walking').setScale(-1.5, 1.5)
+    gameState.player1 = players.create(225, 300, 'fighter1_walking')
+    gameState.player2 = players.create(525, 300, 'fighter1_walking')
 
     // Definir controlos (Hard Coded for now)
     gameState.player1.controlos = this.input.keyboard.addKeys({
@@ -41,13 +41,13 @@ class Fight extends Phaser.Scene {
     // Definir animações
     this.anims.create({
       key: 'p1_walking',
-      frames: this.anims.generateFrameNumbers('fighter1_walking', {start: 0, end: 4}),
+      frames: this.anims.generateFrameNumbers('f1_w', {start: 0, end: 4}),
       repeat: -1
     })
 
     this.anims.create({
-      key: 'p1_attack',
-      frames: this.anims.generateFrameNumbers('fighter1_attack'),
+      key: 'p1_attack1',
+      frames: this.anims.generateFrameNumbers('f1_atck1'),
 
     })
 

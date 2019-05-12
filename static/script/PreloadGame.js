@@ -33,8 +33,17 @@ class PreloadGame extends Phaser.Scene {
     this.load.image('map1_bg', 'static/img/maps/map1_bg.png')
     this.load.image('map1_ground', 'static/img/maps/map1_ground.png')
 
-    this.load.spritesheet('fighter1_walking', 'static/img/fighters/fighter1_walking.png', {frameWidth: 38, frameHeight: 79})
-    this.load.spritesheet('fighter1_attack', 'static/img/fighters/fighter1_attack.png', {frameWidth: 54.3, frameHeight: 78})
+    // Fighter 1
+    this.load.spritesheet('f1_w', 'static/img/fighters/fighter1_walking.png', {frameWidth: 38, frameHeight: 79})
+    this.load.spritesheet('f1_w_f', 'static/img/fighters/fighter1_walking_flip.png', {frameWidth: 38, frameHeight: 79})
+    this.load.spritesheet('f1_jump', 'static/img/fighters/fighter1_jump.png', {frameWidth: 54.3, frameHeight: 78})
+    this.load.spritesheet('f1_jump_f', 'static/img/fighters/fighter1_jump_flip.png', {frameWidth: 54.3, frameHeight: 78})
+    this.load.spritesheet('f1_atck1', 'static/img/fighters/fighter1_attack1.png', {frameWidth: 54.3, frameHeight: 78})
+    this.load.spritesheet('f1_atck1_f', 'static/img/fighters/fighter1_attack1_flip.png', {frameWidth: 54.3, frameHeight: 78})
+    this.load.spritesheet('f1_atck2', 'static/img/fighters/fighter1_attack2.png', {frameWidth: 54.3, frameHeight: 78})
+    this.load.spritesheet('f1_atck2_f', 'static/img/fighters/fighter1_attack2_flip.png', {frameWidth: 54.3, frameHeight: 78})
+    this.load.image('f1_proj', 'static/img/fighters/fighter1_proj.png')
+    this.load.image('f1_proj_f', 'static/img/fighters/fighter1_proj_flip.png')
 
     gameState.hasMusic = false
 
