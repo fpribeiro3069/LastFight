@@ -34,14 +34,14 @@ class PreloadGame extends Phaser.Scene {
     this.load.image('map1_ground', 'static/img/maps/map1_ground.png')
 
     // Fighter 1
-    this.load.spritesheet('f1_w', 'static/img/fighters/fighter1_walking.png', {frameWidth: 38, frameHeight: 79})
-    this.load.spritesheet('f1_w_f', 'static/img/fighters/fighter1_walking_flip.png', {frameWidth: 38, frameHeight: 79})
-    this.load.spritesheet('f1_jump', 'static/img/fighters/fighter1_jump.png', {frameWidth: 54.3, frameHeight: 78})
-    this.load.spritesheet('f1_jump_f', 'static/img/fighters/fighter1_jump_flip.png', {frameWidth: 54.3, frameHeight: 78})
-    this.load.spritesheet('f1_atck1', 'static/img/fighters/fighter1_attack1.png', {frameWidth: 54.3, frameHeight: 78})
-    this.load.spritesheet('f1_atck1_f', 'static/img/fighters/fighter1_attack1_flip.png', {frameWidth: 54.3, frameHeight: 78})
-    this.load.spritesheet('f1_atck2', 'static/img/fighters/fighter1_attack2.png', {frameWidth: 54.3, frameHeight: 78})
-    this.load.spritesheet('f1_atck2_f', 'static/img/fighters/fighter1_attack2_flip.png', {frameWidth: 54.3, frameHeight: 78})
+    this.load.spritesheet('f1_w', 'static/img/fighters/fighter1_walking.png', {frameWidth: 37.4, frameHeight: 79})
+    this.load.spritesheet('f1_w_f', 'static/img/fighters/fighter1_walking_flip.png', {frameWidth: 37.4, frameHeight: 79})
+    this.load.spritesheet('f1_jump', 'static/img/fighters/fighter1_jump.png', {frameWidth: 34, frameHeight: 80})
+    this.load.spritesheet('f1_jump_f', 'static/img/fighters/fighter1_jump_flip.png', {frameWidth: 34, frameHeight: 80})
+    this.load.spritesheet('f1_atck1', 'static/img/fighters/fighter1_attack1.png', {frameWidth: 51, frameHeight: 78})
+    this.load.spritesheet('f1_atck1_f', 'static/img/fighters/fighter1_attack1_flip.png', {frameWidth: 51, frameHeight: 78})
+    this.load.spritesheet('f1_atck2', 'static/img/fighters/fighter1_attack2.png', {frameWidth: 129, frameHeight: 152})
+    this.load.spritesheet('f1_atck2_f', 'static/img/fighters/fighter1_attack2_flip.png', {frameWidth: 129, frameHeight: 152})
     this.load.image('f1_proj', 'static/img/fighters/fighter1_proj.png')
     this.load.image('f1_proj_f', 'static/img/fighters/fighter1_proj_flip.png')
 
