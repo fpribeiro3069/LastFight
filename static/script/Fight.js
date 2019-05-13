@@ -40,12 +40,7 @@ class Fight extends Phaser.Scene {
     // Definir animações
     this.anims.create({
       key: 'p1_stand',
-      frames: [{key:'f1_w', frame: 2}],
-    })
-
-    this.anims.create({
-      key: 'p1_stand_f',
-      frames: [{key:'f1_w_f', frame: 0}],
+      frames: [{key:'f1_w', frame: 0}],
     })
 
     this.anims.create({
@@ -55,19 +50,9 @@ class Fight extends Phaser.Scene {
     })
 
     this.anims.create({
-      key: 'p1_walking_f',
-      frames: this.anims.generateFrameNumbers('f1_w_f', {start: 0, end: 4}),
-      repeat: -1
-    })
-
-    this.anims.create({
       key: 'p1_jump',
       frames: this.anims.generateFrameNumbers('f1_jump', {start: 0, end: 3}),
-    })
-
-    this.anims.create({
-      key: 'p1_jump_f',
-      frames: this.anims.generateFrameNumbers('f1_jump_f', {start: 0, end: 3}),
+      frameRate: 10
     })
 
     this.anims.create({
@@ -88,13 +73,13 @@ class Fight extends Phaser.Scene {
     if(gameState.isActive) {
       // Update Player1
       if(gameState.player1.controlos.left.isDown) {
-        if(gameState.player1.body.onFloor() && gameState.player1.play('p1_walking', true))
+        if(gameState.player1.body.onFloor() && !gameState.player1.play('p1_walking', true))
           gameState.player1.play('p1_walking', true)
         gameState.player1.flipX = true
         gameState.player1.setVelocityX(-350)
       }
       else if(gameState.player1.controlos.right.isDown) {
-        if(gameState.player1.body.onFloor() && gameState.player1.play('p1_walking', true))
+        if(gameState.player1.body.onFloor() && !gameState.player1.play('p1_walking', true))
           gameState.player1.play('p1_walking', true)
         gameState.player1.flipX = false
         gameState.player1.setVelocityX(350)
@@ -104,13 +89,14 @@ class Fight extends Phaser.Scene {
           gameState.player1.play('p1_stand')
         }
         else {
-          gameState.player1.play('p1_jump')
+          if(gameState.player1.body.onFloor() && gameState.player1.play('p1_jump'))
+            gameState.player1.play('p1_jump')
         }
         gameState.player1.setVelocityX(0)
       }
 
       if(gameState.player1.controlos.up.isDown && gameState.player1.body.onFloor()){
-        gameState.player1.play('p1_jumping');
+        gameState.player1.play('p1_jump');
         gameState.player1.body.setVelocityY(-400);
     }
 
