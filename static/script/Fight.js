@@ -58,7 +58,7 @@ class Fight extends Phaser.Scene {
     this.anims.create({
       key: 'p1_attack1',
       frames: this.anims.generateFrameNumbers('f1_atck1'),
-
+      frameRate: 20
     })
 
     this.anims.create({
@@ -67,38 +67,42 @@ class Fight extends Phaser.Scene {
 
     })
 
+    // para poder retornar à posição de descanso apos ter dado um murro
+    gameState.player1.on('animationcomplete', function(currentAnim, frame, sprite) {
+      console.log(currentAnim.key)
+      if(currentAnim.key == 'p1_attack1')
+        sprite.play('p1_stand')
+    })
+
   }
 
   update() {
     if(gameState.isActive) {
       // Update Player1
       if(gameState.player1.controlos.left.isDown) {
-        if(gameState.player1.body.onFloor() && !gameState.player1.play('p1_walking', true))
+        if(gameState.player1.body.onFloor())
           gameState.player1.play('p1_walking', true)
         gameState.player1.flipX = true
         gameState.player1.setVelocityX(-350)
       }
       else if(gameState.player1.controlos.right.isDown) {
-        if(gameState.player1.body.onFloor() && !gameState.player1.play('p1_walking', true))
+        if(gameState.player1.body.onFloor())
           gameState.player1.play('p1_walking', true)
         gameState.player1.flipX = false
         gameState.player1.setVelocityX(350)
       }
-      else {
-        if (gameState.player1.body.onFloor()) {
-          gameState.player1.play('p1_stand')
-        }
-        else {
-          if(gameState.player1.body.onFloor() && gameState.player1.play('p1_jump'))
-            gameState.player1.play('p1_jump')
-        }
+      else if (gameState.player1.body.onFloor() && gameState.player1.anims.currentAnim != this.anims.get('p1_attack1')) {
+        gameState.player1.setFrame(0)
         gameState.player1.setVelocityX(0)
       }
 
       if(gameState.player1.controlos.up.isDown && gameState.player1.body.onFloor()){
         gameState.player1.play('p1_jump');
         gameState.player1.body.setVelocityY(-400);
-    }
+      }
+      if(Phaser.Input.Keyboard.JustDown(gameState.player1.controlos.attack)) {
+        gameState.player1.play('p1_attack1', true)
+      }
 
       // END
       // Update Player2
