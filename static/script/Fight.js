@@ -9,12 +9,13 @@ class Fight extends Phaser.Scene {
 
     const platforms = this.physics.add.staticGroup();
     const players = this.physics.add.group();
+
     // Construir estaticamente o mapa.... Rip nota
     for(let i = 0; i < 1000; i+=60)
       platforms.create(20 + i, 570, 'map1_ground').setScale(.7).refreshBody()
 
     gameState.player1 = players.create(225, 300, 'f1_w').setScale(1.5)
-    gameState.player2 = players.create(525, 300, 'f1_w_f').setScale(1.5)
+    gameState.player2 = players.create(525, 300, 'f1_w').setScale(1.5)
 
     gameState.player1.controlos = this.input.keyboard.addKeys({
       up: 'W',
@@ -34,8 +35,16 @@ class Fight extends Phaser.Scene {
     gameState.player1.vida = 100;
     gameState.player2.vida = 100;
 
+    gameState.player1.projectiles = this.physics.add.group()
+
+    // Collisions
     gameState.player1.setCollideWorldBounds(true)
     this.physics.add.collider(players, platforms)
+    this.physics.add.collider(gameState.player2, gameState.player1.projectiles, function(player2, projectile) {
+      gameState.player2.vida -= 15
+      console.log('Player2.vida = ' + gameState.player2.vida)
+      projectile.destroy()
+    })
 
     // Definir animações
     this.anims.create({
@@ -56,21 +65,21 @@ class Fight extends Phaser.Scene {
     })
 
     this.anims.create({
-      key: 'p1_attack1',
-      frames: this.anims.generateFrameNumbers('f1_atck1'),
+      key: 'p1_attack',
+      frames: this.anims.generateFrameNumbers('f1_atck'),
       frameRate: 20
     })
 
     this.anims.create({
-      key: 'p1_attack2',
-      frames: this.anims.generateFrameNumbers('f1_atck2'),
+      key: 'p1_fire',
+      frames: this.anims.generateFrameNumbers('f1_fire'),
 
     })
 
     // para poder retornar à posição de descanso apos ter dado um murro
     gameState.player1.on('animationcomplete', function(currentAnim, frame, sprite) {
       console.log(currentAnim.key)
-      if(currentAnim.key == 'p1_attack1')
+      if(currentAnim.key == 'p1_attack')
         sprite.play('p1_stand')
     })
 
@@ -91,7 +100,7 @@ class Fight extends Phaser.Scene {
         gameState.player1.flipX = false
         gameState.player1.setVelocityX(350)
       }
-      else if (gameState.player1.body.onFloor() && gameState.player1.anims.currentAnim != this.anims.get('p1_attack1')) {
+      else if (gameState.player1.body.onFloor() && gameState.player1.anims.currentAnim != this.anims.get('p1_attack')) {
         gameState.player1.setFrame(0)
         gameState.player1.setVelocityX(0)
       }
@@ -101,12 +110,18 @@ class Fight extends Phaser.Scene {
         gameState.player1.body.setVelocityY(-400);
       }
       if(Phaser.Input.Keyboard.JustDown(gameState.player1.controlos.attack)) {
-        gameState.player1.play('p1_attack1', true)
+        gameState.player1.play('p1_attack', true)
+      }
+      if(Phaser.Input.Keyboard.JustDown(gameState.player1.controlos.fire)) {
+        gameState.player1.play('p1_fire')
+        let projectile = gameState.player1.projectiles.create(gameState.player1.x, gameState.player1.y, 'f1_proj')
+        projectile.setGravityY(0)
+        projectile.body.setVelocityX(gameState.player1.flipX ? -1500 : 1500)
       }
 
       // END
       // Update Player2
-
+      
       //END
     }
   }
