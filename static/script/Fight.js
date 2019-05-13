@@ -36,6 +36,7 @@ class Fight extends Phaser.Scene {
     gameState.player2.vida = 100;
 
     gameState.player1.projectiles = this.physics.add.group()
+    gameState.player2.projectiles = this.physics.add.group()
 
     // Collisions
     gameState.player1.setCollideWorldBounds(true)
@@ -43,6 +44,12 @@ class Fight extends Phaser.Scene {
     this.physics.add.collider(gameState.player2, gameState.player1.projectiles, function(player2, projectile) {
       gameState.player2.vida -= 15
       console.log('Player2.vida = ' + gameState.player2.vida)
+      projectile.destroy()
+    })
+
+    this.physics.add.collider(gameState.player1, gameState.player2.projectiles, function(player1, projectile) {
+      gameState.player1.vida -= 15
+      console.log('Player1.vida = ' + gameState.player1.vida)
       projectile.destroy()
     })
 
@@ -74,13 +81,6 @@ class Fight extends Phaser.Scene {
       key: 'p1_fire',
       frames: this.anims.generateFrameNumbers('f1_fire'),
 
-    })
-
-    // para poder retornar à posição de descanso apos ter dado um murro
-    gameState.player1.on('animationcomplete', function(currentAnim, frame, sprite) {
-      console.log(currentAnim.key)
-      if(currentAnim.key == 'p1_attack')
-        sprite.play('p1_stand')
     })
 
   }
@@ -121,7 +121,36 @@ class Fight extends Phaser.Scene {
 
       // END
       // Update Player2
-      
+      if(gameState.player2.controlos.left.isDown) {
+        if(gameState.player2.body.onFloor())
+          gameState.player2.play('p1_walking', true)
+        gameState.player2.flipX = true
+        gameState.player2.setVelocityX(-350)
+      }
+      else if(gameState.player2.controlos.right.isDown) {
+        if(gameState.player2.body.onFloor())
+          gameState.player2.play('p1_walking', true)
+        gameState.player2.flipX = false
+        gameState.player2.setVelocityX(350)
+      }
+      else if (gameState.player2.body.onFloor() && gameState.player2.anims.currentAnim != this.anims.get('p1_attack')) {
+        gameState.player2.setFrame(0)
+        gameState.player2.setVelocityX(0)
+      }
+
+      if(gameState.player2.controlos.up.isDown && gameState.player2.body.onFloor()){
+        gameState.player2.play('p1_jump');
+        gameState.player2.body.setVelocityY(-400);
+      }
+      if(Phaser.Input.Keyboard.JustDown(gameState.player2.controlos.attack)) {
+        gameState.player2.play('p1_attack', true)
+      }
+      if(Phaser.Input.Keyboard.JustDown(gameState.player2.controlos.fire)) {
+        gameState.player2.play('p1_fire')
+        let projectile = gameState.player2.projectiles.create(gameState.player2.x, gameState.player2.y, 'f1_proj')
+        projectile.setGravityY(0)
+        projectile.body.setVelocityX(gameState.player2.flipX ? -1500 : 1500)
+      }
       //END
     }
   }
