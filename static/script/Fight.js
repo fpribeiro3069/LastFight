@@ -118,20 +118,20 @@ class Fight extends Phaser.Scene {
       if(Phaser.Input.Keyboard.JustDown(gameState.player1.controlos.fire)) {
         gameState.player1.play('p1_fire')
         let projectile = gameState.player1.projectiles.create(gameState.player1.x, gameState.player1.y, 'f1_proj')
-        projectile.setGravityY(0)
+        projectile.setGravityY(-1000)
         projectile.body.setVelocityX(gameState.player1.flipX ? -1500 : 1500)
       }
 
       // END
       // Update Player2
       if(gameState.player2.controlos.left.isDown) {
-        if(gameState.player2.body.onFloor())
+        if(gameState.player2.body.onFloor() && gameState.player2.anims.currentAnim != this.anims.get('p1_attack'))
           gameState.player2.play('p1_walking', true)
         gameState.player2.flipX = true
         gameState.player2.setVelocityX(-350)
       }
       else if(gameState.player2.controlos.right.isDown) {
-        if(gameState.player2.body.onFloor())
+        if(gameState.player2.body.onFloor() && gameState.player2.anims.currentAnim != this.anims.get('p1_attack'))
           gameState.player2.play('p1_walking', true)
         gameState.player2.flipX = false
         gameState.player2.setVelocityX(350)
@@ -151,7 +151,7 @@ class Fight extends Phaser.Scene {
       if(Phaser.Input.Keyboard.JustDown(gameState.player2.controlos.fire)) {
         gameState.player2.play('p1_fire')
         let projectile = gameState.player2.projectiles.create(gameState.player2.x, gameState.player2.y, 'f1_proj')
-        projectile.setGravityY(0)
+        projectile.setGravityY(-1000)
         projectile.body.setVelocityX(gameState.player2.flipX ? -1500 : 1500)
       }
       //END
