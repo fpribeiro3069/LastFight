@@ -14,7 +14,7 @@ class MainMenu extends Phaser.Scene {
     somIcon.setInteractive({useHandCursor: true});
     somIcon.setFrame(gameState.hasMusic ? 1 : 0)
     somIcon.on('pointerdown', function() {
-      if(gameState.hasMusic) {
+      if(gameState.hasMusic){
         this.setFrame(0)
         // Turn off sound
         gameState.som.mute = true
