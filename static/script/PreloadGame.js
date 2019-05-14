@@ -18,8 +18,6 @@ class PreloadGame extends Phaser.Scene {
       callbackScope: this,
       repeat: true
     })
-    function loadingAnim() {
-    }
 
     // Falta background!! Por enquanto fica backgroundColor
     //this.load.image('menubg', 'static/img/menubg.jpg');
