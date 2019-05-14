@@ -5,7 +5,7 @@ window.onload = function (){
       width: 1000,
       height: 600,
       backgroundColor: 0xb21c1c,
-      scene: [/*BootGame,*/PreloadGame, MainMenu, Fight],
+      scene: [/*BootGame,*/PreloadGame, MainMenu, Controlos, Fight],
       physics: {
         default: 'arcade',
         arcade: {

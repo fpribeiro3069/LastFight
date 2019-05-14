@@ -47,6 +47,10 @@ class MainMenu extends Phaser.Scene {
       this.scene.start('Fight')
     })
 
+    controlos.on('pointerdown', () => {
+      this.scene.start('Controlos')
+    })
+
     // Função auxiliar para retornar todos os botoes do main menu
     function getMainMenuButtons() {
       return [jogar, controlos, creditos]
