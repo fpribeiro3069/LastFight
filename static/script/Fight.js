@@ -75,6 +75,9 @@ class Fight extends Phaser.Scene {
       key: 'p1_attack',
       frames: this.anims.generateFrameNumbers('f1_atck'),
       frameRate: 20
+    }).on('complete', function(_currentAnim, _currentFrame, sprite) {
+      console.log('Completed animation')
+      sprite.play('p1_stand')
     })
 
     this.anims.create({
@@ -89,13 +92,13 @@ class Fight extends Phaser.Scene {
     if(gameState.isActive) {
       // Update Player1
       if(gameState.player1.controlos.left.isDown) {
-        if(gameState.player1.body.onFloor())
+        if(gameState.player1.body.onFloor() && gameState.player1.anims.currentAnim != this.anims.get('p1_attack'))
           gameState.player1.play('p1_walking', true)
         gameState.player1.flipX = true
         gameState.player1.setVelocityX(-350)
       }
       else if(gameState.player1.controlos.right.isDown) {
-        if(gameState.player1.body.onFloor())
+        if(gameState.player1.body.onFloor() && gameState.player1.anims.currentAnim != this.anims.get('p1_attack'))
           gameState.player1.play('p1_walking', true)
         gameState.player1.flipX = false
         gameState.player1.setVelocityX(350)
