@@ -5,6 +5,9 @@ class Fight extends Phaser.Scene {
 
   create() {
     gameState.isActive = true;
+    // Tirar a musica do menu
+    gameState.hasMusic = false
+    gameState.som.stop()
     this.add.image(500, 300, 'map1_bg')
 
     gameState.pauseMenu = {}

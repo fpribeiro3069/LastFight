@@ -9,7 +9,8 @@ class MainMenu extends Phaser.Scene {
     let controlos = this.add.sprite(380, 300, 'controlos').setOrigin(0, 0);
     let creditos = this.add.sprite(380, 400, 'creditos').setOrigin(0, 0);
     let somIcon = this.add.sprite(20, 530, 'som').setOrigin(0, 0);
-    gameState.som = this.sound.add('menuSound', {loop: true})
+    if (gameState.som == undefined)
+      gameState.som = this.sound.add('menuSound', {loop: true})
 
     somIcon.setInteractive({useHandCursor: true});
     somIcon.setFrame(gameState.hasMusic ? 1 : 0)
