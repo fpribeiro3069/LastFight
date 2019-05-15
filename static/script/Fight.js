@@ -116,7 +116,7 @@ class Fight extends Phaser.Scene {
         gameState.player1.play('p1_attack', true)
       }
       if(Phaser.Input.Keyboard.JustDown(gameState.player1.controlos.fire)) {
-        gameState.player1.play('p1_fire')
+        gameState.player1.play('p1_fire', true)
         let projectile = gameState.player1.projectiles.create(gameState.player1.x, gameState.player1.y, 'f1_proj')
         projectile.setGravityY(-1000)
         projectile.body.setVelocityX(gameState.player1.flipX ? -1500 : 1500)
