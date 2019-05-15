@@ -57,6 +57,23 @@ class Fight extends Phaser.Scene {
       console.log('Player1.vida = ' + gameState.player1.vida)
       projectile.destroy()
     })
+    gameState.player1.isHitting = false
+    gameState.player2.isHitting = false
+
+    this.physics.add.overlap(gameState.player1, gameState.player2, function(player1, player2) {
+      if(gameState.player1.isHitting) {
+        gameState.player2.vida -= 10
+        console.log('Player2.vida = ' + gameState.player2.vida)
+        player2.x = player1.x < player2.x ? player2.x + 10 : player2.x -10
+        gameState.player1.isHitting = false
+      }
+      else if(gameState.player2.isHitting) {
+        gameState.player1.vida -= 10
+        console.log('Player1.vida = ' + gameState.player1.vida)
+        player1.x = player1.x < player2.x ? player1.x + 10 : player1.x -10
+        gameState.player2.isHitting = false
+      }
+    })
 
     // Definir animações
     this.anims.create({
@@ -82,7 +99,11 @@ class Fight extends Phaser.Scene {
       frameRate: 20
     }).on('complete', function(_currentAnim, _currentFrame, sprite) {
       console.log('Completed animation')
+      // Check if puch landed
       sprite.play('p1_stand')
+      sprite.isHitting = false
+    }).on('start', function(_currentAnim, _currentFrame, sprite) {
+      sprite.isHitting = true
     })
 
     this.anims.create({
