@@ -102,19 +102,22 @@ class Fight extends Phaser.Scene {
   update() {
     if(gameState.isActive) {
       // Update Player1
+      var isAttacking = gameState.player1.anims.currentAnim == this.anims.get('p1_attack') ||
+                        gameState.player1.anims.currentAnim == this.anims.get('p1_fire')
+
       if(gameState.player1.controlos.left.isDown) {
-        if(gameState.player1.body.onFloor() && gameState.player1.anims.currentAnim != this.anims.get('p1_attack'))
+        if(gameState.player1.body.onFloor() && !(isAttacking))
           gameState.player1.play('p1_walking', true)
         gameState.player1.flipX = true
         gameState.player1.setVelocityX(-350)
       }
       else if(gameState.player1.controlos.right.isDown) {
-        if(gameState.player1.body.onFloor() && gameState.player1.anims.currentAnim != this.anims.get('p1_attack'))
+        if(gameState.player1.body.onFloor() && !(isAttacking))
           gameState.player1.play('p1_walking', true)
         gameState.player1.flipX = false
         gameState.player1.setVelocityX(350)
       }
-      else if (gameState.player1.body.onFloor() && gameState.player1.anims.currentAnim != this.anims.get('p1_attack')) {
+      else if (gameState.player1.body.onFloor() && !(isAttacking)) {
         gameState.player1.play('p1_stand')
         gameState.player1.setVelocityX(0)
       }
@@ -127,31 +130,27 @@ class Fight extends Phaser.Scene {
         gameState.player1.play('p1_attack', true)
       }
       if(Phaser.Input.Keyboard.JustDown(gameState.player1.controlos.fire)) {
-<<<<<<< HEAD
-        gameState.player1.play('p1_fire')
-=======
         gameState.player1.play('p1_fire', true)
-        let projectile = gameState.player1.projectiles.create(gameState.player1.x, gameState.player1.y, 'f1_proj')
-        projectile.setGravityY(-1000)
-        projectile.body.setVelocityX(gameState.player1.flipX ? -1500 : 1500)
->>>>>>> 6d6f628d76e18cb11a630925746eef47bbe73f14
       }
 
       // END
       // Update Player2
+      isAttacking = gameState.player2.anims.currentAnim == this.anims.get('p1_attack') ||
+                        gameState.player2.anims.currentAnim == this.anims.get('p1_fire')
+
       if(gameState.player2.controlos.left.isDown) {
-        if(gameState.player2.body.onFloor() && gameState.player2.anims.currentAnim != this.anims.get('p1_attack'))
+        if(gameState.player2.body.onFloor() && !(isAttacking))
           gameState.player2.play('p1_walking', true)
         gameState.player2.flipX = true
         gameState.player2.setVelocityX(-350)
       }
       else if(gameState.player2.controlos.right.isDown) {
-        if(gameState.player2.body.onFloor() && gameState.player2.anims.currentAnim != this.anims.get('p1_attack'))
+        if(gameState.player2.body.onFloor() && !(isAttacking))
           gameState.player2.play('p1_walking', true)
         gameState.player2.flipX = false
         gameState.player2.setVelocityX(350)
       }
-      else if (gameState.player2.body.onFloor() && gameState.player2.anims.currentAnim != this.anims.get('p1_attack')) {
+      else if (gameState.player2.body.onFloor() && !(isAttacking)) {
         gameState.player2.play('p1_stand')
         gameState.player2.setVelocityX(0)
       }
@@ -164,7 +163,7 @@ class Fight extends Phaser.Scene {
         gameState.player2.play('p1_attack', true)
       }
       if(Phaser.Input.Keyboard.JustDown(gameState.player2.controlos.fire)) {
-        gameState.player2.play('p1_fire')
+        gameState.player2.play('p1_fire', true)
       }
       //END
     }
