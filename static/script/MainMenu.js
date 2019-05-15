@@ -45,7 +45,7 @@ class MainMenu extends Phaser.Scene {
     // Click events para os botoes
     jogar.on('pointerdown', () => {
       // TODO!!! Falta fazer a scene intermediaria de escolha de personagens e mapa
-      this.scene.start('Fight')
+      this.scene.start('MenuPers')
     })
 
     controlos.on('pointerdown', () => {
