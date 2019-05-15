@@ -7,6 +7,46 @@ class Fight extends Phaser.Scene {
     gameState.isActive = true;
     this.add.image(500, 300, 'map1_bg')
 
+    gameState.pauseMenu = {}
+    gameState.pauseMenu.pauseButton = this.add.image(900, 10, 'pause').setOrigin(0, 0).setScale(0.5)
+    gameState.pauseMenu.pauseButton.setInteractive({useHandCursor: true})
+    gameState.pauseMenu.pauseButton.on('pointerdown', () => {
+      gameState.isActive = !gameState.isActive
+
+      if (!gameState.isActive) {
+        this.physics.pause()
+        console.log('Game is paused!')
+
+        let rect = new Phaser.Geom.Rectangle(230, 200, 500, 200)
+        gameState.pauseMenu.rect = this.add.graphics({fillStyle: {color: 0x333333, alpha: 50}})
+        gameState.pauseMenu.rect.fillRectShape(rect)
+        gameState.pauseMenu.resume = this.add.text(380, 230, 'RESUME', {fontSize: '55px'}).setInteractive({useHandCursor: true})
+        gameState.pauseMenu.quit = this.add.text(410, 310, 'QUIT', {fontSize: '55px'}).setInteractive({useHandCursor: true})
+
+        gameState.pauseMenu.resume.on('pointerdown', () => {
+          this.physics.resume()
+          gameState.isActive = !gameState.isActive
+          console.log('Game is active!')
+
+          gameState.pauseMenu.rect.destroy()
+          gameState.pauseMenu.resume.destroy()
+          gameState.pauseMenu.quit.destroy()
+        })
+
+        gameState.pauseMenu.quit.on('pointerdown', () => {
+          this.scene.start('MainMenu')
+        })
+      }
+      else {
+        this.physics.resume()
+        console.log('Game is active!')
+
+        gameState.pauseMenu.rect.destroy()
+        gameState.pauseMenu.resume.destroy()
+        gameState.pauseMenu.quit.destroy()
+      }
+    })
+
     const platforms = this.physics.add.staticGroup();
     const players = this.physics.add.group();
 
