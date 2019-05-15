@@ -1,14 +1,14 @@
-class Controlos extends Phaser.Scene {
+class Creditos extends Phaser.Scene {
     constructor() {
-      super('Controlos');
+      super('Creditos');
     }
 
     preload() {
-        this.load.image('instrucoes', 'static/img/menus/CONTROLOS2.png')
+        this.load.image('cred', 'static/img/menus/CREDITOS.png')
     }
 
     create() {
-        let controlos = this.add.image(200, 60, 'instrucoes').setOrigin(0, 0)
+        let creditos = this.add.image(170, 40, 'cred').setOrigin(0, 0)
         let voltar = this.add.sprite(30, 515, 'voltar').setOrigin(0, 0)
 
         voltar.setInteractive({useHandCursor: true})
