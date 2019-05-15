@@ -50,12 +50,14 @@ class Fight extends Phaser.Scene {
       gameState.player2.vida -= 15
       console.log('Player2.vida = ' + gameState.player2.vida)
       projectile.destroy()
+      updateHUD()
     })
 
     this.physics.add.collider(gameState.player1, gameState.player2.projectiles, function(player1, projectile) {
       gameState.player1.vida -= 15
       console.log('Player1.vida = ' + gameState.player1.vida)
       projectile.destroy()
+      updateHUD()
     })
     gameState.player1.isHitting = false
     gameState.player2.isHitting = false
@@ -66,12 +68,14 @@ class Fight extends Phaser.Scene {
         console.log('Player2.vida = ' + gameState.player2.vida)
         player2.x = player1.x < player2.x ? player2.x + 10 : player2.x -10
         gameState.player1.isHitting = false
+        updateHUD()
       }
       else if(gameState.player2.isHitting) {
         gameState.player1.vida -= 10
         console.log('Player1.vida = ' + gameState.player1.vida)
         player1.x = player1.x < player2.x ? player1.x + 10 : player1.x -10
         gameState.player2.isHitting = false
+        updateHUD()
       }
     })
 
@@ -117,6 +121,11 @@ class Fight extends Phaser.Scene {
       projectile.body.setVelocityX(sprite.flipX ? -1200 : 1200)
       sprite.play('p1_stand')
     })
+
+    function updateHUD() {
+      gameState.player2.vidaText.setText('Player 2: ' + gameState.player2.vida)
+      gameState.player1.vidaText.setText('Player 1: ' + gameState.player1.vida)
+    }
 
   }
 
@@ -187,6 +196,30 @@ class Fight extends Phaser.Scene {
         gameState.player2.play('p1_fire', true)
       }
       //END
+
+      // Check Win Condition
+      if(gameState.player1.vida <= 0) {
+        gameState.isActive = false;
+        gameState.player1.vida = 0;
+        this.physics.pause()
+        let gameover = this.add.text(300, 250, "Player 2 Wins!!!",
+          {fontFamily: 'Comic Sans MS', fontSize: '72px', color: '#faa'});
+        gameover.setInteractive({useHandCursor: true})
+        gameover.on('pointerdown', () => {
+          this.scene.start('MainMenu')
+        })
+      }
+      else if(gameState.player2.vida <= 0) {
+        gameState.isActive = false;
+        gameState.player2.vida = 0;
+        this.physics.pause()
+        let gameover = this.add.text(300, 250, "Player 1 Wins!!!",
+          {fontFamily: 'Comic Sans MS', fontSize: '72px', color: '#faa'});
+        gameover.setInteractive({useHandCursor: true})
+        gameover.on('pointerdown', () => {
+          this.scene.start('MainMenu')
+        })
+      }
     }
   }
 }
