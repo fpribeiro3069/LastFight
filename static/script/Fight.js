@@ -33,7 +33,11 @@ class Fight extends Phaser.Scene {
     })
 
     gameState.player1.vida = 100;
+    gameState.player1.vidaText = this.add.text(10, 10, "Player 1: 100",
+      {fontFamily: 'Comic Sans MS', fontSize: '32px', color: '#faa'});
     gameState.player2.vida = 100;
+    gameState.player2.vidaText = this.add.text(700, 10, "Player 2: 100",
+      {fontFamily: 'Comic Sans MS', fontSize: '32px', color: '#faa'});
 
     gameState.player1.projectiles = this.physics.add.group()
     gameState.player2.projectiles = this.physics.add.group()
