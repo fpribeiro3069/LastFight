@@ -13,16 +13,15 @@ Projeto Multimédia 2018/2019 - Phaser 2D Fighting Game
 
 2. De seguida entras no repositório criado e fazes
 
+`cd LastFight/`
+
+`python3 -m venv venv`
+
 `source venv/bin/activate`
+
+`pip install -r requirements.txt`
 
 `python --version`
 
-3. Se a versão de python que aparecer for a 2 tens que fechar a consola e apagar a
-pasta `venv` e de seguida escrever `python3 -m venv venv` e voltas a testar o
-ponto **2**.
-
-4. Quando aparecer a versão correta de python tens que fazer
-`pip install -r requirements.txt`
-
-5. Para testar o servidor é só escrever `flask run` e aceder no
+3. Para testar o servidor é só escrever `flask run` e aceder no
 browser ao `127.0.0.1:5000` e deve aparecer o jogo.
