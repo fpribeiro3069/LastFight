@@ -14,7 +14,7 @@ class MenuPers extends Phaser.Scene {
 
         let lenPersonagens = 3  // HardCoded para 3 personagens
         let currentPers1 = 1
-        let currentPers2 = 3
+        let currentPers2 = 1
 
         let pers1 = this.add.sprite(250, 350, 'f' + currentPers1 + '_w').setScale(3)
         let pers2 = this.add.sprite(750, 350, 'f' + currentPers2 + '_w').setScale(3)

@@ -300,8 +300,8 @@ class Fight extends Phaser.Scene {
         gameState.isActive = false;
         gameState.player1.vida = 0;
         this.physics.pause()
-        let gameover = this.add.text(300, 250, "Player 2 Wins!!!",
-          {fontSize: '72px'});
+        let gameover = this.add.text(150, 225, "Player 2 Wins!!!",
+          {fontSize: '72px', color:'#ff0000'});
         gameover.setInteractive({useHandCursor: true})
         gameover.on('pointerdown', () => {
           this.scene.start('MainMenu')
@@ -311,8 +311,8 @@ class Fight extends Phaser.Scene {
         gameState.isActive = false;
         gameState.player2.vida = 0;
         this.physics.pause()
-        let gameover = this.add.text(300, 250, "Player 1 Wins!!!",
-          {fontSize: '72px'});
+        let gameover = this.add.text(150, 225, "Player 1 Wins!!!",
+          {fontSize: '72px', color:'#ff0000'});
         gameover.setInteractive({useHandCursor: true})
         gameover.on('pointerdown', () => {
           this.scene.start('MainMenu')
