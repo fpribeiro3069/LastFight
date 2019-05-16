@@ -53,7 +53,7 @@ class PreloadGame extends Phaser.Scene {
     this.load.image('f1_proj', 'static/img/fighters/fighter1_proj.png')
 
     // Fighter 2
-    this.load.spritesheet('f2_w', 'static/img/fighters/2_walk.png', {frameWidth: 54.75, frameHeight: 81})
+    this.load.spritesheet('f2_w', 'static/img/fighters/2_walk.png', {frameWidth: 53.75, frameHeight: 81})
     this.load.spritesheet('f2_jump', 'static/img/fighters/2_jump.png', {frameWidth: 42.75, frameHeight: 86})
     this.load.spritesheet('f2_atck', 'static/img/fighters/2_attack1.png', {frameWidth: 56.6, frameHeight: 80})
     this.load.spritesheet('f2_fire', 'static/img/fighters/2_attack2.png', {frameWidth: 66, frameHeight: 80})
