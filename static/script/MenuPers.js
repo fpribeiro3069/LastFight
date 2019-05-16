@@ -5,6 +5,10 @@ class MenuPers extends Phaser.Scene {
 
 
     create() {
+        this.add.text(175, 15, 'ESCOLHER PERSONAGEM', {fontSize: '62px'})
+        this.add.text(142, 110, 'PLAYER 1', {fontSize: '45px', color: '#2200FF'})
+        this.add.text(650, 110, 'PLAYER 2', {fontSize: '45px', color: '#2200FF'})
+
         let avancar = this.add.image(779, 515, 'avancar').setOrigin(0, 0)
         let voltar = this.add.sprite(30, 515, 'voltar').setOrigin(0, 0)
 
@@ -12,8 +16,8 @@ class MenuPers extends Phaser.Scene {
         let currentPers1 = 1
         let currentPers2 = 3
 
-        let pers1 = this.add.sprite(250, 300, 'f' + currentPers1 + '_w').setScale(3)
-        let pers2 = this.add.sprite(750, 300, 'f' + currentPers2 + '_w').setScale(3)
+        let pers1 = this.add.sprite(250, 350, 'f' + currentPers1 + '_w').setScale(3)
+        let pers2 = this.add.sprite(750, 350, 'f' + currentPers2 + '_w').setScale(3)
 
         let pers1Anim = this.anims.create({
           key: 'pers1',
@@ -32,11 +36,11 @@ class MenuPers extends Phaser.Scene {
         pers1.anims.play('pers1')
         pers2.anims.play('pers2')
 
-        let back1 = this.add.sprite(100, 250, 'nextback')
-        let next1 = this.add.sprite(400, 250, 'nextback').setFrame(2)
+        let back1 = this.add.sprite(100, 300, 'nextback')
+        let next1 = this.add.sprite(400, 300, 'nextback').setFrame(2)
 
-        let back2 = this.add.sprite(600, 250, 'nextback')
-        let next2 = this.add.sprite(900, 250, 'nextback').setFrame(2)
+        let back2 = this.add.sprite(600, 300, 'nextback')
+        let next2 = this.add.sprite(900, 300, 'nextback').setFrame(2)
 
         back1.setInteractive()
         next1.setInteractive()

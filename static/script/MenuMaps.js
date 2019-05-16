@@ -5,6 +5,7 @@ class MenuMaps extends Phaser.Scene {
 
 
     create() {
+        this.add.text(270, 15, 'ESCOLHER MAPA', {fontSize: '62px'})
         let avancar = this.add.image(779, 515, 'comecar').setOrigin(0, 0)
         let voltar = this.add.sprite(30, 515, 'voltar').setOrigin(0, 0)
 
