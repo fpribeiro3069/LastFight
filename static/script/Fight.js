@@ -22,7 +22,7 @@ class Fight extends Phaser.Scene {
         console.log('Game is paused!')
 
         let rect = new Phaser.Geom.Rectangle(230, 200, 500, 200)
-        gameState.pauseMenu.rect = this.add.graphics({fillStyle: {color: 0x333333, alpha: 50}})
+        gameState.pauseMenu.rect = this.add.graphics({fillStyle: {color: 0x777777, alpha: 0.5}})
         gameState.pauseMenu.rect.fillRectShape(rect)
         gameState.pauseMenu.resume = this.add.text(380, 230, 'RESUME', {fontSize: '55px'}).setInteractive({useHandCursor: true})
         gameState.pauseMenu.quit = this.add.text(410, 310, 'QUIT', {fontSize: '55px'}).setInteractive({useHandCursor: true})
