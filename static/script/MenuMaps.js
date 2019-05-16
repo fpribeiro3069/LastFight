@@ -12,6 +12,11 @@ class MenuMaps extends Phaser.Scene {
         let back = this.add.sprite(300, 300, 'nextback')
         let next = this.add.sprite(700, 300, 'nextback').setFrame(2)
 
+        let lenMaps = 1  // HardCoded for maps
+        let currentMap = 1
+
+        let currentMapImage = this.add.image(500, 300, 'map' + currentMap + '_preview').setScale(.3)
+
         voltar.setInteractive({useHandCursor: true})
         voltar.on('pointerover', function() {
             voltar.setFrame(1)
@@ -31,6 +36,7 @@ class MenuMaps extends Phaser.Scene {
             avancar.setFrame(0)
         })
         avancar.on('pointerdown', () => {
+            gameState.map = currentMap
             this.scene.start('Fight')
         })
 
@@ -43,6 +49,12 @@ class MenuMaps extends Phaser.Scene {
         })
         back.on('pointerdown', () => {
             // Previous Map
+            currentMap -= 1
+            if(currentMap <= 0)
+              currentMap = lenMaps
+
+            currentMapImage.destroy()
+            currentMap = this.add.image(500, 300, 'map' + currentMap + '_preview').setScale(.3)
         })
 
         next.setInteractive({useHandCursor: true})
@@ -54,6 +66,12 @@ class MenuMaps extends Phaser.Scene {
         })
         next.on('pointerdown', () => {
             // Next Map
+            currentMap += 1
+            if(currentMap > lenMaps)
+              currentMap = lenMaps
+
+            currentMapImage.destroy()
+            currentMap = this.add.image(500, 300, 'map' + currentMap + '_preview').setScale(.3)
         })
 
     }

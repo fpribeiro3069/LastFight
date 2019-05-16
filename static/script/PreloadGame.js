@@ -34,6 +34,7 @@ class PreloadGame extends Phaser.Scene {
     this.load.audio('menuSound', 'static/sound/menu.mp3')
 
     // Map 1
+    this.load.image('map1_preview', 'static/img/maps/map1_preview.png')
     this.load.image('map1_bg', 'static/img/maps/map1_bg.png')
     this.load.image('map1_ground', 'static/img/maps/map1_ground.png')
     this.load.image('map1_highground', 'static/img/maps/map1_highground.png')

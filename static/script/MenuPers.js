@@ -77,7 +77,7 @@ class MenuPers extends Phaser.Scene {
         })
         next1.on('pointerdown', () => {
           currentPers1 += 1
-          if(currentPers1 >= 4)
+          if(currentPers1 > lenPersonagens)
             currentPers1 = 1
           pers1.anims.stop()
           pers1.setTexture('f' + currentPers1 + '_w', 0, false)
