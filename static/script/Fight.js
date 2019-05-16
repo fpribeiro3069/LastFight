@@ -4,9 +4,6 @@ class Fight extends Phaser.Scene {
   }
 
   create() {
-    gameState.number1 = 1
-    gameState.number2 = 3
-
     gameState.isActive = true;
     // Tirar a musica do menu
     gameState.hasMusic = false
