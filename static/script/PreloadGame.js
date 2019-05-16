@@ -25,10 +25,11 @@ class PreloadGame extends Phaser.Scene {
     this.load.spritesheet('jogar', 'static/img/btnJogar.png', {frameWidth: 191, frameHeight: 67})
     this.load.spritesheet('controlos', 'static/img/btnControlos.png', {frameWidth: 191, frameHeight: 66})
     this.load.spritesheet('creditos', 'static/img/btnCreditos.png', {frameWidth: 191, frameHeight: 66})
-    this.load.spritesheet('avancar', 'static/img/btnAvancar.png', {frameWidth: 191, frameHeight: 66})
+    this.load.spritesheet('avancar', 'static/img/btnAvancar.png', {frameWidth: 190.5, frameHeight: 66})
     this.load.spritesheet('comecar', 'static/img/btnComecar.png', {frameWidth: 192, frameHeight: 66})
     this.load.spritesheet('som', 'static/img/btnSound.png', {frameWidth: 56, frameHeight: 52})
     this.load.spritesheet('voltar', 'static/img/btnVoltar.png', {frameWidth: 193, frameHeight: 67})
+    this.load.spritesheet('nextback', 'static/img/btnNextBack.png', {frameWidth: 40, frameHeight: 38})
     this.load.image('pause', 'static/img/btnPause.png')
     this.load.audio('menuSound', 'static/sound/menu.mp3')
 

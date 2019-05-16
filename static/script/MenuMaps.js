@@ -5,7 +5,7 @@ class MenuMaps extends Phaser.Scene {
 
 
     create() {
-        let avancar = this.add.image(779, 515, 'avancar').setOrigin(0, 0)
+        let avancar = this.add.image(779, 515, 'comecar').setOrigin(0, 0)
         let voltar = this.add.sprite(30, 515, 'voltar').setOrigin(0, 0)
 
         voltar.setInteractive({useHandCursor: true})
