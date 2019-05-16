@@ -47,9 +47,9 @@ class PreloadGame extends Phaser.Scene {
 
     //Fighter 3
     this.load.spritesheet('f3_w', 'static/img/fighters/3_walk.png', {frameWidth: 62, frameHeight: 80})
-    this.load.spritesheet('f3_jump', 'static/img/fighters/3_jump.png', {frameWidth: 62.3, frameHeight: 106})
+    this.load.spritesheet('f3_jump', 'static/img/fighters/3_jump.png', {frameWidth: 57.5, frameHeight: 82})
     this.load.spritesheet('f3_atck', 'static/img/fighters/3_attack1.png', {frameWidth: 81, frameHeight: 80})
-    this.load.spritesheet('f3_fire', 'static/img/fighters/3_attack2.png', {frameWidth: 98, frameHeight: 88})
+    this.load.spritesheet('f3_fire', 'static/img/fighters/3_attack2.png', {frameWidth: 86.5, frameHeight: 79})
     this.load.image('f3_proj', 'static/img/fighters/3_projetil.png')
 
     gameState.hasMusic = false
