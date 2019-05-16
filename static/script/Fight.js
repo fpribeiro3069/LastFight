@@ -10,22 +10,34 @@ class Fight extends Phaser.Scene {
     // Tirar a musica do menu
     gameState.hasMusic = false
     gameState.som.stop()
-    this.add.image(500, 300, 'map1_bg')
+
+    function buildMap(context, num, platforms) {
+      // A little HardCoded ):
+      context.add.image(500, 300, 'map' + num + '_bg')
+
+      switch (num) {
+        case 1:
+          // Map 1
+          for(let i = 0; i < 1000; i+=60)
+            platforms.create(20 + i, 570, 'map'+ num +'_ground').setScale(.7).refreshBody()
+          platforms.create(370, 375, 'map'+ num +'_highground').setScale(0.8).refreshBody()
+          platforms.create(600, 375, 'map'+ num +'_highground').setScale(0.8).refreshBody()
+          platforms.create(500, 200, 'map'+ num +'_highground').setScale(0.8).refreshBody()
+
+          break;
+        case 2:
+          // Map 2
+          platforms.create(500, 570, 'map' + num + '_ground').setScale(2.7).refreshBody()
+          platforms.create(200, 300, 'map' + num + '_highground').setScale(2.7).refreshBody()
+          platforms.create(800, 300, 'map' + num + '_highground').setScale(2.7).refreshBody()
+          platforms.create(500, 390, 'map' + num + '_highground').setScale(2.7).refreshBody()
+          platforms.create(500, 150, 'map' + num + '_highground').setScale(2.7).refreshBody()
+          break;
+      }
+    }
 
     const platforms = this.physics.add.staticGroup();
-    const players = this.physics.add.group();
-
-    // Construir estaticamente o mapa.... Rip nota
-    for(let i = 0; i < 1000; i+=60)
-      platforms.create(20 + i, 570, 'map1_ground').setScale(.7).refreshBody()
-
-    platforms.create(370, 375, 'map1_highground').setScale(0.8).refreshBody()
-    //for(let i = 0; i < 500; i+=30)
-    //  platforms.create(270 + i, 310, 'map1_ground').setScale(.5).refreshBody()
-
-    platforms.create(600, 375, 'map1_highground').setScale(0.8).refreshBody()
-
-    platforms.create(500, 200, 'map1_highground').setScale(0.8).refreshBody()
+    buildMap(this, gameState.map, platforms)
 
     //region Pause
     gameState.pauseMenu = {}
@@ -69,8 +81,10 @@ class Fight extends Phaser.Scene {
     })
     //endregion Pause
 
+    const players = this.physics.add.group();
     gameState.player1 = players.create(225, 300, 'f' + gameState.number1 +'_w').setScale(1.5)
-    gameState.player2 = players.create(525, 300, 'f' + gameState.number2 +'_w').setScale(1.5)
+    gameState.player2 = players.create(775, 300, 'f' + gameState.number2 +'_w').setScale(1.5)
+    gameState.player2.flipX = true
 
     gameState.player1.controlos = this.input.keyboard.addKeys({
       up: 'W',

@@ -12,7 +12,7 @@ class MenuMaps extends Phaser.Scene {
         let back = this.add.sprite(300, 300, 'nextback')
         let next = this.add.sprite(700, 300, 'nextback').setFrame(2)
 
-        let lenMaps = 1  // HardCoded for maps
+        let lenMaps = 2  // HardCoded for maps
         let currentMap = 1
 
         let currentMapImage = this.add.image(500, 300, 'map' + currentMap + '_preview').setScale(.3)
@@ -53,6 +53,7 @@ class MenuMaps extends Phaser.Scene {
             if(currentMap <= 0)
               currentMap = lenMaps
 
+            console.log('pointerdown: back -> ' + currentMap)
             currentMapImage.destroy()
             currentMap = this.add.image(500, 300, 'map' + currentMap + '_preview').setScale(.3)
         })
@@ -68,8 +69,9 @@ class MenuMaps extends Phaser.Scene {
             // Next Map
             currentMap += 1
             if(currentMap > lenMaps)
-              currentMap = lenMaps
+              currentMap = 1
 
+            console.log('pointerdown: next -> ' + currentMap)
             currentMapImage.destroy()
             currentMap = this.add.image(500, 300, 'map' + currentMap + '_preview').setScale(.3)
         })

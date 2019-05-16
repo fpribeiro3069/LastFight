@@ -18,6 +18,7 @@ class MenuPers extends Phaser.Scene {
 
         let pers1 = this.add.sprite(250, 350, 'f' + currentPers1 + '_w').setScale(3)
         let pers2 = this.add.sprite(750, 350, 'f' + currentPers2 + '_w').setScale(3)
+        pers2.flipX = true
 
         let pers1Anim = this.anims.create({
           key: 'pers1',
