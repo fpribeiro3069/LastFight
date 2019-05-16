@@ -23,8 +23,9 @@ class Fight extends Phaser.Scene {
     //for(let i = 0; i < 500; i+=30)
     //  platforms.create(270 + i, 310, 'map1_ground').setScale(.5).refreshBody()
 
-    for(let i = 0; i < 250; i+=30)
-      platforms.create(550 + i, 120, 'map1_ground').setScale(.5).refreshBody()
+    platforms.create(600, 375, 'map1_highground').setScale(0.8).refreshBody()
+
+    platforms.create(500, 200, 'map1_highground').setScale(0.8).refreshBody()
 
     //region Pause
     gameState.pauseMenu = {}
@@ -88,10 +89,10 @@ class Fight extends Phaser.Scene {
 
     gameState.player1.vida = 100;
     gameState.player1.vidaText = this.add.text(10, 10, "Player 1: 100",
-      {fontFamily: 'Comic Sans MS', fontSize: '32px', color: '#faa'});
+      {fontSize: '32px'});
     gameState.player2.vida = 100;
     gameState.player2.vidaText = this.add.text(700, 10, "Player 2: 100",
-      {fontFamily: 'Comic Sans MS', fontSize: '32px', color: '#faa'});
+      {fontSize: '32px'});
 
     gameState.player1.projectiles = this.physics.add.group()
     gameState.player2.projectiles = this.physics.add.group()
@@ -300,7 +301,7 @@ class Fight extends Phaser.Scene {
         gameState.player1.vida = 0;
         this.physics.pause()
         let gameover = this.add.text(300, 250, "Player 2 Wins!!!",
-          {fontFamily: 'Comic Sans MS', fontSize: '72px', color: '#faa'});
+          {fontSize: '72px'});
         gameover.setInteractive({useHandCursor: true})
         gameover.on('pointerdown', () => {
           this.scene.start('MainMenu')
@@ -311,7 +312,7 @@ class Fight extends Phaser.Scene {
         gameState.player2.vida = 0;
         this.physics.pause()
         let gameover = this.add.text(300, 250, "Player 1 Wins!!!",
-          {fontFamily: 'Comic Sans MS', fontSize: '72px', color: '#faa'});
+          {fontSize: '72px'});
         gameover.setInteractive({useHandCursor: true})
         gameover.on('pointerdown', () => {
           this.scene.start('MainMenu')
