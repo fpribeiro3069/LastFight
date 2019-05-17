@@ -4,6 +4,16 @@ class Fight extends Phaser.Scene {
   }
 
   create() {
+    gameState.murro1 =  this.sound.add('murro'+ gameState.number1)
+    gameState.murro2 =  this.sound.add('murro'+ gameState.number2)
+
+    gameState.fire1 =  this.sound.add('fire'+ gameState.number1)
+    gameState.fire2 =  this.sound.add('fire'+ gameState.number2)
+
+    gameState.pain1 =  this.sound.add('pain'+ gameState.number1)
+    gameState.pain2 =  this.sound.add('pain'+ gameState.number2)
+
+
     gameState.isActive = true;
     gameState.speed = 350
     gameState.jump = 600
@@ -117,6 +127,7 @@ class Fight extends Phaser.Scene {
     this.physics.add.collider(players, platforms)
     this.physics.add.collider(gameState.player2, gameState.player1.projectiles, function(player2, projectile) {
       gameState.player2.vida -= 15
+      gameState.pain2.play()
       console.log('Player2.vida = ' + gameState.player2.vida)
       projectile.destroy()
       updateHUD()
@@ -124,6 +135,7 @@ class Fight extends Phaser.Scene {
 
     this.physics.add.collider(gameState.player1, gameState.player2.projectiles, function(player1, projectile) {
       gameState.player1.vida -= 15
+      gameState.pain1.play()
       console.log('Player1.vida = ' + gameState.player1.vida)
       projectile.destroy()
       updateHUD()
@@ -134,6 +146,8 @@ class Fight extends Phaser.Scene {
     this.physics.add.overlap(gameState.player1, gameState.player2, function(player1, player2) {
       if(gameState.player1.isHitting) {
         gameState.player2.vida -= 10
+        gameState.pain2.play()
+
         console.log('Player2.vida = ' + gameState.player2.vida)
         player2.x = player1.x < player2.x ? player2.x + 10 : player2.x -10
         gameState.player1.isHitting = false
@@ -141,6 +155,7 @@ class Fight extends Phaser.Scene {
       }
       else if(gameState.player2.isHitting) {
         gameState.player1.vida -= 10
+        gameState.pain1.play()
         console.log('Player1.vida = ' + gameState.player1.vida)
         player1.x = player1.x < player2.x ? player1.x - 10 : player1.x + 10
         gameState.player2.isHitting = false
@@ -171,6 +186,7 @@ class Fight extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('f' + gameState.number1 +'_atck'),
       frameRate: 20
     }).on('complete', function(_currentAnim, _currentFrame, sprite) {
+      gameState.murro1.play()
       console.log('Completed animation')
       // Check if puch landed
       sprite.play('p1_stand')
@@ -184,6 +200,7 @@ class Fight extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('f' + gameState.number1 +'_fire'),
       frameRate: 10
     }).on('complete', function(_currentAnim, _currentFrame, sprite) {
+      gameState.fire1.play()
       console.log('Completed animation')
       let projectile = sprite.projectiles.create(sprite.x, sprite.y, 'f' + gameState.number1 +'_proj')
       projectile.setGravityY(-1000)
@@ -214,6 +231,7 @@ class Fight extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('f' + gameState.number2 +'_atck'),
       frameRate: 20
     }).on('complete', function(_currentAnim, _currentFrame, sprite) {
+      gameState.murro2.play()
       console.log('Completed animation')
       // Check if puch landed
       sprite.play('p2_stand')
@@ -227,6 +245,7 @@ class Fight extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('f' + gameState.number2 +'_fire'),
       frameRate: 10
     }).on('complete', function(_currentAnim, _currentFrame, sprite) {
+      gameState.fire2.play()
       console.log('Completed animation')
       let projectile = sprite.projectiles.create(sprite.x, sprite.y, 'f' + gameState.number2 +'_proj')
       projectile.setGravityY(-1000)

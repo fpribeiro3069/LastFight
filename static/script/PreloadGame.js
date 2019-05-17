@@ -31,7 +31,6 @@ class PreloadGame extends Phaser.Scene {
     this.load.spritesheet('voltar', 'static/img/btnVoltar.png', {frameWidth: 193, frameHeight: 67})
     this.load.spritesheet('nextback', 'static/img/btnNextBack.png', {frameWidth: 40, frameHeight: 38})
     this.load.image('pause', 'static/img/btnPause.png')
-    this.load.audio('menuSound', 'static/sound/menu.mp3')
 
     // Map 1
     this.load.image('map1_preview', 'static/img/maps/map1_preview.png')
@@ -65,6 +64,22 @@ class PreloadGame extends Phaser.Scene {
     this.load.spritesheet('f3_atck', 'static/img/fighters/3_attack1.png', {frameWidth: 81, frameHeight: 80})
     this.load.spritesheet('f3_fire', 'static/img/fighters/3_attack2.png', {frameWidth: 86.5, frameHeight: 79})
     this.load.image('f3_proj', 'static/img/fighters/3_projetil.png')
+
+
+    //Sounds
+    this.load.audio('menuSound', 'static/sound/menu.mp3')
+    this.load.audio('murro1', 'static/sound/PUNCH.mp3')
+    this.load.audio('murro2', 'static/sound/punch1.mp3')
+    this.load.audio('murro3', 'static/sound/punch2.mp3')
+
+    this.load.audio('fire1', 'static/sound/Fireball+2.mp3')
+    this.load.audio('fire2', 'static/sound/Fireball+3.mp3')
+    this.load.audio('fire3', 'static/sound/throw3.mp3')
+
+    this.load.audio('pain1', 'static/sound/Pain1.mp3')
+    this.load.audio('pain2', 'static/sound/pain2.mp3')
+    this.load.audio('pain3', 'static/sound/roblox-death.mp3')
+
 
     gameState.hasMusic = false
 
