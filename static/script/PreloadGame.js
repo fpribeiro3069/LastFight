@@ -13,7 +13,7 @@ class PreloadGame extends Phaser.Scene {
     let width = this.cameras.main.width;
     let height = this.cameras.main.height;
 
-    this.load.on('progress', function (value) {   //value tempo que demora a carregar um asset (dado pelo evento progress)
+    this.load.on('progress', function (value) {   //valor entre 0 e 1 -> tempo que demora a carregar um asset (dado pelo evento progress)
           console.log(value);
           progressBar.clear();
           progressBar.fillStyle(0xffffff, 1);
@@ -43,8 +43,12 @@ class PreloadGame extends Phaser.Scene {
                 loading.destroy();
     });
 
-
+    // Imagens (geral)
     this.load.image('title', 'static/img/title.png')
+    this.load.image('title2','static/img/title2.png')
+    this.load.image('title3','static/img/title3.png')
+    this.load.image('player1','static/img/player1.png')
+    this.load.image('player2','static/img/player2.png')
     this.load.spritesheet('jogar', 'static/img/btnJogar.png', {frameWidth: 191, frameHeight: 67})
     this.load.spritesheet('controlos', 'static/img/btnControlos.png', {frameWidth: 191, frameHeight: 66})
     this.load.spritesheet('creditos', 'static/img/btnCreditos.png', {frameWidth: 191, frameHeight: 66})

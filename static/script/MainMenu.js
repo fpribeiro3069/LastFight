@@ -12,7 +12,7 @@ class MainMenu extends Phaser.Scene {
     this.video.muted=true;
     this.video.src='static/img/menuback.mp4';*/
 
-    this.add.image(300, 50, 'title').setOrigin(0, 0)
+    this.add.image(300, 30, 'title').setOrigin(0, 0)
     let jogar = this.add.sprite(380, 200, 'jogar').setOrigin(0, 0);
     let controlos = this.add.sprite(380, 300, 'controlos').setOrigin(0, 0);
     let creditos = this.add.sprite(380, 400, 'creditos').setOrigin(0, 0);

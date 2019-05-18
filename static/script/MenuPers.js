@@ -5,9 +5,12 @@ class MenuPers extends Phaser.Scene {
 
 
     create() {
-        this.add.text(175, 15, 'ESCOLHER PERSONAGEM', {fontSize: '62px'})
-        this.add.text(142, 110, 'PLAYER 1', {fontSize: '45px', color: '#2200FF'})
-        this.add.text(650, 110, 'PLAYER 2', {fontSize: '45px', color: '#2200FF'})
+        //this.add.text(175, 15, 'ESCOLHER PERSONAGEM', {fontSize: '62px'})
+        this.add.image(165, 30, 'title2').setOrigin(0, 0);
+        this.add.image(170, 155, 'player1').setOrigin(0, 0);
+        this.add.image(670, 155, 'player2').setOrigin(0, 0);
+        //this.add.text(142, 110, 'PLAYER 1', {fontSize: '45px', color: '#2200FF'})
+        //this.add.text(650, 110, 'PLAYER 2', {fontSize: '45px', color: '#2200FF'})
 
         let avancar = this.add.image(779, 515, 'avancar').setOrigin(0, 0)
         let voltar = this.add.sprite(30, 515, 'voltar').setOrigin(0, 0)
