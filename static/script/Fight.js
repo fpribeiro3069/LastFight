@@ -121,32 +121,56 @@ class Fight extends Phaser.Scene {
     gameState.player1.projectiles = this.physics.add.group()
     gameState.player2.projectiles = this.physics.add.group()
 
+    function showDamageText(context, damage, receiver) {
+      let damageText = context.make.text({
+        x: receiver.x,
+        y: receiver.y - 50,
+        text: damage,
+        style: {fontSize: '20px', color: (receiver == gameState.player1 ? '#0000ff' : '#ff0000')},
+        add: true
+      })
+      var timer = context.time.delayedCall(500, () => {
+        damageText.destroy()
+      }, {}, this);
+      var timer = context.time.addEvent({
+        delay: 40,
+        callback: () => {
+          damageText.y -= 5
+        },
+        callbackScope: this,
+        repeat: 15
+      })
+    }
+
     // Collisions
     gameState.player1.setCollideWorldBounds(true)
     gameState.player2.setCollideWorldBounds(true)
     this.physics.add.collider(players, platforms)
-    this.physics.add.collider(gameState.player2, gameState.player1.projectiles, function(player2, projectile) {
+    this.physics.add.collider(gameState.player2, gameState.player1.projectiles, (player2, projectile) => {
       gameState.player2.vida -= 15
       gameState.pain2.play()
       console.log('Player2.vida = ' + gameState.player2.vida)
       projectile.destroy()
+      showDamageText(this, '15', gameState.player2)
       updateHUD()
     })
 
-    this.physics.add.collider(gameState.player1, gameState.player2.projectiles, function(player1, projectile) {
+    this.physics.add.collider(gameState.player1, gameState.player2.projectiles, (player1, projectile) => {
       gameState.player1.vida -= 15
       gameState.pain1.play()
       console.log('Player1.vida = ' + gameState.player1.vida)
       projectile.destroy()
+      showDamageText(this, '15', gameState.player1)
       updateHUD()
     })
     gameState.player1.isHitting = false
     gameState.player2.isHitting = false
 
-    this.physics.add.overlap(gameState.player1, gameState.player2, function(player1, player2) {
+    this.physics.add.overlap(gameState.player1, gameState.player2, (player1, player2) => {
       if(gameState.player1.isHitting) {
         gameState.player2.vida -= 10
         gameState.pain2.play()
+        showDamageText(this, '10', gameState.player2)
 
         console.log('Player2.vida = ' + gameState.player2.vida)
         player2.x = player1.x < player2.x ? player2.x + 10 : player2.x -10
@@ -159,6 +183,7 @@ class Fight extends Phaser.Scene {
         console.log('Player1.vida = ' + gameState.player1.vida)
         player1.x = player1.x < player2.x ? player1.x - 10 : player1.x + 10
         gameState.player2.isHitting = false
+        showDamageText(this, '10', gameState.player1)
         updateHUD()
       }
     })
@@ -169,6 +194,7 @@ class Fight extends Phaser.Scene {
       frames: [{key:'f' + gameState.number1 +'_w', frame: 0}],
     })
 
+    console.log('gameState.number1 = ' + gameState.number1 )
     this.anims.create({
       key: 'p1_walking',
       frames: this.anims.generateFrameNumbers('f' + gameState.number1 +'_w', {start: 0, end: 4}),
@@ -319,7 +345,9 @@ class Fight extends Phaser.Scene {
       if(gameState.player2.controlos.up.isDown && gameState.player2.body.onFloor()){
         gameState.player2.play('p2_jump');
         gameState.player2.body.setVelocityY(-1 * gameState.jump);
-      }
+      }      // let damageText = context.make.text(attacker.x, attacker.y - 20, damage,
+      //   {fontSize: '20px', color: (attacker == gameState.player1 ? '#0000ff' : '#ff0000')})
+
       if(Phaser.Input.Keyboard.JustDown(gameState.player2.controlos.attack)) {
         gameState.player2.play('p2_attack', true)
       }

@@ -6,7 +6,7 @@ class MenuPers extends Phaser.Scene {
 
     create() {
         //this.add.text(175, 15, 'ESCOLHER PERSONAGEM', {fontSize: '62px'})
-        gameState.videoBackGround(this)
+        gameState.videoBackGround(this, 2)
 
         this.add.image(165, 30, 'title2').setOrigin(0, 0);
         this.add.image(170, 155, 'player1').setOrigin(0, 0);

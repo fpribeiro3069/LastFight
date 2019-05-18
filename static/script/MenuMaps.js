@@ -5,7 +5,7 @@ class MenuMaps extends Phaser.Scene {
 
 
     create() {
-        gameState.videoBackGround(this)
+        gameState.videoBackGround(this, 3)
         //this.add.text(270, 15, 'ESCOLHER MAPA', {fontSize: '62px'})
         this.add.image(360, 30, 'title3').setOrigin(0, 0)
         let avancar = this.add.image(779, 515, 'comecar').setOrigin(0, 0)

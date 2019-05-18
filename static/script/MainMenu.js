@@ -11,31 +11,34 @@ class MainMenu extends Phaser.Scene {
     /*this.video=document.createElement('video');
     this.video.muted=true;
     this.video.src='static/img/menuback.mp4';*/
-    gameState.videoBackGround = function(context) {
+    gameState.videoBackGround = function(context, num) {
       let platforms = context.physics.add.staticGroup()
       context.add.image(500, 300, 'map1_bg')
       for(let i = -200; i < 1200; i+=60)
         platforms.create(20 + i, 570, 'map1_ground').setScale(.7).refreshBody()
       let players = context.physics.add.group()
       context.physics.add.collider(players, platforms)
-      let sprite = players.create(-30, 300, 'f1_w')
+      let sprite = players.create(num != 2 ? -30 : 1100, 300, 'f' + num + '_w')
+      if(num == 2) {
+        sprite.flipX = true
+      }
       context.anims.create({
-        key: 'p1_walking',
-        frames: context.anims.generateFrameNumbers('f1_w', {start: 0, end: 4}),
+        key: 'sprite_w',
+        frames: context.anims.generateFrameNumbers('f' + num + '_w', {start: 0, end: 4}),
         repeat: -1
       })
       context.anims.create({
-        key: 'p1_jump',
-        frames: context.anims.generateFrameNumbers('f1_jump', {start: 0, end: 3}),
+        key: 'sprite_jump',
+        frames: context.anims.generateFrameNumbers('f' + num + '_jump', {start: 0, end: 3}),
         frameRate: 10
       })
-      sprite.setVelocityX(350)
-      sprite.anims.play('p1_walking')
+      sprite.setVelocityX(num == 2 ? -350 : 350)
+      sprite.anims.play('sprite_w')
       var timer = context.time.addEvent({
         delay: 900,                // ms
         callback: () => {
           sprite.setVelocityY(-400)
-          sprite.anims.play('p1_jump')
+          sprite.anims.play('sprite_jump')
         },
         //args: [],
         callbackScope: context,
@@ -43,7 +46,7 @@ class MainMenu extends Phaser.Scene {
       });
     }
 
-    gameState.videoBackGround(this)
+    gameState.videoBackGround(this, 1)
 
     this.add.image(300, 30, 'title').setOrigin(0, 0)
     let jogar = this.add.sprite(380, 200, 'jogar').setOrigin(0, 0);
