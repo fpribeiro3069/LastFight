@@ -49,6 +49,7 @@ class PreloadGame extends Phaser.Scene {
     this.load.image('title3','static/img/title3.png')
     this.load.image('player1','static/img/player1.png')
     this.load.image('player2','static/img/player2.png')
+    this.load.image('fight','static/img/fight_intro.png')
     this.load.spritesheet('jogar', 'static/img/btnJogar.png', {frameWidth: 191, frameHeight: 67})
     this.load.spritesheet('controlos', 'static/img/btnControlos.png', {frameWidth: 191, frameHeight: 66})
     this.load.spritesheet('creditos', 'static/img/btnCreditos.png', {frameWidth: 191, frameHeight: 66})
@@ -94,6 +95,8 @@ class PreloadGame extends Phaser.Scene {
 
 
     //Sounds
+    this.load.audio('fight', 'static/sound/fight.mp3')
+
     this.load.audio('menuSound', 'static/sound/menu.mp3')
     this.load.audio('murro1', 'static/sound/PUNCH.mp3')
     this.load.audio('murro2', 'static/sound/punch1.mp3')

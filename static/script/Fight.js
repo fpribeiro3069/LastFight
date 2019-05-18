@@ -4,6 +4,7 @@ class Fight extends Phaser.Scene {
   }
 
   create() {
+    gameState.fight = this.sound.add('fight')
     gameState.murro1 =  this.sound.add('murro'+ gameState.number1)
     gameState.murro2 =  this.sound.add('murro'+ gameState.number2)
 
@@ -95,6 +96,25 @@ class Fight extends Phaser.Scene {
     gameState.player1 = players.create(225, 300, 'f' + gameState.number1 +'_w').setScale(1.5)
     gameState.player2 = players.create(775, 300, 'f' + gameState.number2 +'_w').setScale(1.5)
     gameState.player2.flipX = true
+
+    // Fight Intro
+    gameState.fight.play()
+    let fight_intro = this.physics.add.image(500, 200, 'fight')
+    fight_intro.setVelocityY(-500)
+    //fight_intro.setGravityY(-900)
+    let timer_intro = this.time.delayedCall(1500, () => {
+       fight_intro.destroy()
+    }, {}, this);
+    // let timer_intro2 = context.time.addEvent({
+    //   delay: 40,
+    //   callback: () => {
+    //     damageText.y -= 5
+    //   },
+    //   callbackScope: this,
+    //   repeat: 15
+    // })
+
+    // End Fight Intro
 
     gameState.player1.controlos = this.input.keyboard.addKeys({
       up: 'W',
