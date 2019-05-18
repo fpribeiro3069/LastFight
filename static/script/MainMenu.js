@@ -4,6 +4,14 @@ class MainMenu extends Phaser.Scene {
   }
 
   create() {
+    //video = this.add.video('MainMenuBack')
+    //video.play(true)
+
+    /* create video as html5 video element. */
+    /*this.video=document.createElement('video');
+    this.video.muted=true;
+    this.video.src='static/img/menuback.mp4';*/
+
     this.add.image(300, 50, 'title').setOrigin(0, 0)
     let jogar = this.add.sprite(380, 200, 'jogar').setOrigin(0, 0);
     let controlos = this.add.sprite(380, 300, 'controlos').setOrigin(0, 0);

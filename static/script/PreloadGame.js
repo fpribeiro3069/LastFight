@@ -6,6 +6,24 @@ class PreloadGame extends Phaser.Scene {
   preload() {
     let loading = this.add.text(400, 250, "Loading game", {fontFamily: 'Comic Sans MS', fontSize: '32px', color: '#faa'});
     let count = 1;
+    let progressBar = this.add.graphics();
+    let progressBox = this.add.graphics();
+    progressBox.fillStyle(0x222222, 0.8);
+    progressBox.fillRect(350, 300, 320, 50);
+    let width = this.cameras.main.width;
+    let height = this.cameras.main.height;
+
+    this.load.on('progress', function (value) {   //value tempo que demora a carregar um asset (dado pelo evento progress)
+          console.log(value);
+          progressBar.clear();
+          progressBar.fillStyle(0xffffff, 1);
+          progressBar.fillRect(360, 310, 300 * value, 30);
+    });
+
+    this.load.on('fileprogress', function (file) {
+              console.log('Loading asset: ' + file.key);   //escreve na consola quando um ficheiro for carregado
+    });
+
     this.time.addEvent({
       delay: 150,
       callback: function() {
@@ -17,10 +35,15 @@ class PreloadGame extends Phaser.Scene {
       },
       callbackScope: this,
       repeat: true
-    })
+    });
 
-    // Falta background!! Por enquanto fica backgroundColor
-    //this.load.image('menubg', 'static/img/menubg.jpg');
+    this.load.on('complete', function () {
+                progressBar.destroy();
+                progressBox.destroy();
+                loading.destroy();
+    });
+
+
     this.load.image('title', 'static/img/title.png')
     this.load.spritesheet('jogar', 'static/img/btnJogar.png', {frameWidth: 191, frameHeight: 67})
     this.load.spritesheet('controlos', 'static/img/btnControlos.png', {frameWidth: 191, frameHeight: 66})
@@ -79,6 +102,10 @@ class PreloadGame extends Phaser.Scene {
     this.load.audio('pain1', 'static/sound/Pain1.mp3')
     this.load.audio('pain2', 'static/sound/pain2.mp3')
     this.load.audio('pain3', 'static/sound/roblox-death.mp3')
+
+
+    //Video
+    //this.load.video('MainMenuBack', 'static/img/menuback.mp4')
 
 
     gameState.hasMusic = false
