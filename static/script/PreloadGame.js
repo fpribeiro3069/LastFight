@@ -59,6 +59,8 @@ class PreloadGame extends Phaser.Scene {
     this.load.spritesheet('voltar', 'static/img/btnVoltar.png', {frameWidth: 193, frameHeight: 67})
     this.load.spritesheet('nextback', 'static/img/btnNextBack.png', {frameWidth: 40, frameHeight: 38})
     this.load.image('pause', 'static/img/btnPause.png')
+    this.load.image('cred', 'static/img/menus/CREDITOS.png')
+    this.load.image('instrucoes', 'static/img/menus/CONTROLOS2.png')
 
     // Map 1
     this.load.image('map1_preview', 'static/img/maps/map1_preview.png')
@@ -109,10 +111,6 @@ class PreloadGame extends Phaser.Scene {
     this.load.audio('pain1', 'static/sound/Pain1.mp3')
     this.load.audio('pain2', 'static/sound/pain2.mp3')
     this.load.audio('pain3', 'static/sound/roblox-death.mp3')
-
-
-    //Video
-    //this.load.video('MainMenuBack', 'static/img/menuback.mp4')
 
 
     gameState.hasMusic = false

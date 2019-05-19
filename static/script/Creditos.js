@@ -3,11 +3,8 @@ class Creditos extends Phaser.Scene {
       super('Creditos');
     }
 
-    preload() {
-        this.load.image('cred', 'static/img/menus/CREDITOS.png')
-    }
-
     create() {
+        gameState.videoBackGround(this, 1)
         let creditos = this.add.image(170, 40, 'cred').setOrigin(0, 0)
         let voltar = this.add.sprite(30, 515, 'voltar').setOrigin(0, 0)
 

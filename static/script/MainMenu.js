@@ -4,13 +4,6 @@ class MainMenu extends Phaser.Scene {
   }
 
   create() {
-    //video = this.add.video('MainMenuBack')
-    //video.play(true)
-
-    /* create video as html5 video element. */
-    /*this.video=document.createElement('video');
-    this.video.muted=true;
-    this.video.src='static/img/menuback.mp4';*/
     gameState.videoBackGround = function(context, num) {
       let platforms = context.physics.add.staticGroup()
       context.add.image(500, 300, 'map1_bg')

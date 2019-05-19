@@ -3,11 +3,8 @@ class Controlos extends Phaser.Scene {
       super('Controlos');
     }
 
-    preload() {
-        this.load.image('instrucoes', 'static/img/menus/CONTROLOS2.png')
-    }
-
     create() {
+        gameState.videoBackGround(this, 2)
         let controlos = this.add.image(200, 60, 'instrucoes').setOrigin(0, 0)
         let voltar = this.add.sprite(30, 515, 'voltar').setOrigin(0, 0)
 
