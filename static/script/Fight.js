@@ -101,18 +101,9 @@ class Fight extends Phaser.Scene {
     gameState.fight.play()
     let fight_intro = this.physics.add.image(500, 200, 'fight')
     fight_intro.setVelocityY(-500)
-    //fight_intro.setGravityY(-900)
     let timer_intro = this.time.delayedCall(1500, () => {
        fight_intro.destroy()
     }, {}, this);
-    // let timer_intro2 = context.time.addEvent({
-    //   delay: 40,
-    //   callback: () => {
-    //     damageText.y -= 5
-    //   },
-    //   callbackScope: this,
-    //   repeat: 15
-    // })
 
     // End Fight Intro
 
@@ -209,24 +200,31 @@ class Fight extends Phaser.Scene {
     })
 
     // Definir animações for player 1
+    if(this.anims.get('p1_stand') != undefined)
+      this.anims.remove('p1_stand')
     this.anims.create({
       key: 'p1_stand',
       frames: [{key:'f' + gameState.number1 +'_w', frame: 0}],
     })
 
-    console.log('gameState.number1 = ' + gameState.number1 )
+    if(this.anims.get('p1_walking') != undefined)
+      this.anims.remove('p1_walking')
     this.anims.create({
       key: 'p1_walking',
       frames: this.anims.generateFrameNumbers('f' + gameState.number1 +'_w', {start: 0, end: 4}),
       repeat: -1
     })
 
+    if(this.anims.get('p1_jump') != undefined)
+      this.anims.remove('p1_jump')
     this.anims.create({
       key: 'p1_jump',
       frames: this.anims.generateFrameNumbers('f' + gameState.number1 +'_jump', {start: 0, end: 3}),
       frameRate: 10
     })
 
+    if(this.anims.get('p1_attack') != undefined)
+      this.anims.remove('p1_attack')
     this.anims.create({
       key: 'p1_attack',
       frames: this.anims.generateFrameNumbers('f' + gameState.number1 +'_atck'),
@@ -241,6 +239,8 @@ class Fight extends Phaser.Scene {
       sprite.isHitting = true
     })
 
+    if(this.anims.get('p1_fire') != undefined)
+      this.anims.remove('p1_fire')
     this.anims.create({
       key: 'p1_fire',
       frames: this.anims.generateFrameNumbers('f' + gameState.number1 +'_fire'),
@@ -255,23 +255,31 @@ class Fight extends Phaser.Scene {
     })
 
     // Animations for player 2
+    if(this.anims.get('p2_stand') != undefined)
+      this.anims.remove('p2_stand')
     this.anims.create({
       key: 'p2_stand',
       frames: [{key:'f' + gameState.number2 +'_w', frame: 0}],
     })
 
+    if(this.anims.get('p2_walking') != undefined)
+      this.anims.remove('p2_walking')
     this.anims.create({
       key: 'p2_walking',
       frames: this.anims.generateFrameNumbers('f' + gameState.number2 +'_w', {start: 0, end: 4}),
       repeat: -1
     })
 
+    if(this.anims.get('p2_jump') != undefined)
+      this.anims.remove('p2_jump')
     this.anims.create({
       key: 'p2_jump',
       frames: this.anims.generateFrameNumbers('f' + gameState.number2 +'_jump', {start: 0, end: 3}),
       frameRate: 10
     })
 
+    if(this.anims.get('p2_attack') != undefined)
+      this.anims.remove('p2_attack')
     this.anims.create({
       key: 'p2_attack',
       frames: this.anims.generateFrameNumbers('f' + gameState.number2 +'_atck'),
@@ -286,6 +294,8 @@ class Fight extends Phaser.Scene {
       sprite.isHitting = true
     })
 
+    if(this.anims.get('p2_fire') != undefined)
+      this.anims.remove('p2_fire')
     this.anims.create({
       key: 'p2_fire',
       frames: this.anims.generateFrameNumbers('f' + gameState.number2 +'_fire'),

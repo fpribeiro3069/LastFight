@@ -18,23 +18,25 @@ class MenuPers extends Phaser.Scene {
         let voltar = this.add.sprite(30, 515, 'voltar').setOrigin(0, 0)
 
         let lenPersonagens = 3  // HardCoded para 3 personagens
-        let currentPers1 = 1
-        let currentPers2 = 1
+        if (gameState.number1 == undefined && gameState.number2 == undefined){
+          gameState.number1 = 1
+          gameState.number2 = 1
+        }
 
-        let pers1 = this.add.sprite(250, 350, 'f' + currentPers1 + '_w').setScale(3)
-        let pers2 = this.add.sprite(750, 350, 'f' + currentPers2 + '_w').setScale(3)
+        let pers1 = this.add.sprite(250, 350, 'f' + gameState.number1 + '_w').setScale(3)
+        let pers2 = this.add.sprite(750, 350, 'f' + gameState.number2 + '_w').setScale(3)
         pers2.flipX = true
 
         let pers1Anim = this.anims.create({
           key: 'pers1',
-          frames: this.anims.generateFrameNumbers('f' + currentPers1 +'_w', {start: 0, end: 4}),
+          frames: this.anims.generateFrameNumbers('f' + gameState.number1 +'_w', {start: 0, end: 4}),
           frameRate: 10,
           repeat: -1
         })
 
         let pers2Anim = this.anims.create({
           key: 'pers2',
-          frames: this.anims.generateFrameNumbers('f' + currentPers2 +'_w', {start: 0, end: 4}),
+          frames: this.anims.generateFrameNumbers('f' + gameState.number2 +'_w', {start: 0, end: 4}),
           frameRate: 10,
           repeat: -1
         })
@@ -60,15 +62,15 @@ class MenuPers extends Phaser.Scene {
           back1.setFrame(0)
         })
         back1.on('pointerdown', () => {
-          currentPers1 -= 1
-          if(currentPers1 <= 0)
-            currentPers1 = lenPersonagens
+          gameState.number1 -= 1
+          if(gameState.number1 <= 0)
+            gameState.number1 = lenPersonagens
           pers1.anims.stop()
-          pers1.setTexture('f' + currentPers1 + '_w', 0, false)
+          pers1.setTexture('f' + gameState.number1 + '_w', 0, false)
           this.anims.remove('pers1')
           pers1Anim = this.anims.create({
             key: 'pers1',
-            frames: this.anims.generateFrameNumbers('f' + currentPers1 +'_w', {start: 0, end: 4}),
+            frames: this.anims.generateFrameNumbers('f' + gameState.number1 +'_w', {start: 0, end: 4}),
             frameRate: 10,
             repeat: -1
           })
@@ -82,15 +84,15 @@ class MenuPers extends Phaser.Scene {
           next1.setFrame(2)
         })
         next1.on('pointerdown', () => {
-          currentPers1 += 1
-          if(currentPers1 > lenPersonagens)
-            currentPers1 = 1
+          gameState.number1 += 1
+          if(gameState.number1 > lenPersonagens)
+            gameState.number1 = 1
           pers1.anims.stop()
-          pers1.setTexture('f' + currentPers1 + '_w', 0, false)
+          pers1.setTexture('f' + gameState.number1 + '_w', 0, false)
           this.anims.remove('pers1')
           pers1Anim = this.anims.create({
             key: 'pers1',
-            frames: this.anims.generateFrameNumbers('f' + currentPers1 +'_w', {start: 0, end: 4}),
+            frames: this.anims.generateFrameNumbers('f' + gameState.number1 +'_w', {start: 0, end: 4}),
             frameRate: 10,
             repeat: -1
           })
@@ -104,15 +106,15 @@ class MenuPers extends Phaser.Scene {
           back2.setFrame(0)
         })
         back2.on('pointerdown', () => {
-          currentPers2 -= 1
-          if(currentPers2 <= 0)
-            currentPers2 = lenPersonagens
+          gameState.number2 -= 1
+          if(gameState.number2 <= 0)
+            gameState.number2 = lenPersonagens
           pers2.anims.stop()
-          pers2.setTexture('f' + currentPers2 + '_w', 0, false)
+          pers2.setTexture('f' + gameState.number2 + '_w', 0, false)
           this.anims.remove('pers2')
           pers2Anim = this.anims.create({
             key: 'pers2',
-            frames: this.anims.generateFrameNumbers('f' + currentPers2 +'_w', {start: 0, end: 4}),
+            frames: this.anims.generateFrameNumbers('f' + gameState.number2 +'_w', {start: 0, end: 4}),
             frameRate: 10,
             repeat: -1
           })
@@ -126,15 +128,15 @@ class MenuPers extends Phaser.Scene {
           next2.setFrame(2)
         })
         next2.on('pointerdown', () => {
-          currentPers2 += 1
-          if(currentPers2 >= 4)
-            currentPers2 = 1
+          gameState.number2 += 1
+          if(gameState.number2 >= 4)
+            gameState.number2 = 1
           pers2.anims.stop()
-          pers2.setTexture('f' + currentPers2 + '_w', 0, false)
+          pers2.setTexture('f' + gameState.number2 + '_w', 0, false)
           this.anims.remove('pers2')
           pers2Anim = this.anims.create({
             key: 'pers2',
-            frames: this.anims.generateFrameNumbers('f' + currentPers2 +'_w', {start: 0, end: 4}),
+            frames: this.anims.generateFrameNumbers('f' + gameState.number2 +'_w', {start: 0, end: 4}),
             frameRate: 10,
             repeat: -1
           })
@@ -160,8 +162,6 @@ class MenuPers extends Phaser.Scene {
             avancar.setFrame(0)
         })
         avancar.on('pointerdown', () => {
-            gameState.number1 = currentPers1
-            gameState.number2 = currentPers2
             this.scene.start('MenuMaps')
         })
 
